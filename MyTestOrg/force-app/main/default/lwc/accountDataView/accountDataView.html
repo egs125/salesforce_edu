@@ -1,0 +1,38 @@
+<template>
+  <div>
+    <div class="slds-grid slds-gutters slds-m-bottom_medium">
+        <div class="slds-col slds-size_10-of-12">
+            <lightning-input
+              label="input"
+              type="text"
+              value={accNm}
+              oncommit= {fnSetKeyword}
+              onkeyup={fnSetKeyword}
+              placeholder="회사명을 입력해주세요"
+              variant="label-hidden"
+            >
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-size_2-of-12">
+            <lightning-button
+              label="Search"
+              onclick={fnSearch}
+              variant="brand"
+            >
+            </lightning-button>
+        </div>
+    </div>
+
+    <lightning-datatable
+      show-row-number-column
+      key-field="Id"
+      data={tableData}
+      columns={columns}
+      onsave={handleSave}
+      draft-values={draftValues}
+    >
+    </lightning-datatable>
+
+</div>
+
+</template>

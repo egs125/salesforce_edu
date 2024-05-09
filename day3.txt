@@ -1,0 +1,29 @@
+Model
+  - standard objects
+  - custom objects
+
+Object = Table
+Field = column
+
+[Field Type]
+  Identity: 자동생성. PK
+  System: 시스템에서 관리하므로 수정 불가
+  Id: salesforce의 레코드 ID를 넣는 필드
+
+[SOQL]
+  - 대소문자 구문 없음
+  - 조인 사용 불가
+
+[Apex]
+  - update / delete 시 ID 가 없으면 오류 발생
+  - Governor Limits 중요하므로 반드시 읽어볼것
+
+[Apex Trigger]
+  - 트리거 실행 후 4개의 오브젝트 반환
+
+[화면 개발]
+  - lightning component
+  - visualforce
+  - Handler: 화면 초기 진입 시 실행. 반드시 필요
+  - cmp 에서 어떤 컨트롤러를 쓸지 선언해두는 부분이 제일 중요함
+  - visualforce 역시 lwc처럼 화면과 컨트롤러로 구성되어 있음. url 호출 형식과 동일한 방식으로 데이터 가져옴

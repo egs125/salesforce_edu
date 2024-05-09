@@ -1,0 +1,11 @@
+[LWC]
+  - js 클래스 기능 활용, 데코레이터 사용
+  - 데코레이터 종류
+    @api: 전역변수 선언 시 사용
+    @track: 업데이트 시 추적하여 반영
+    @wire: server - client 연결. 연결되는 Apex 메소드는 @AuraEnabled(cacheable = true) 어노테이션이 붙어있어야 인식
+  - MVCC 패턴으로 구현됨
+    View - Client Controller(js) - Server Controller(Apex) - Model(sObject)
+  - DTO 클래스를 만들어서 활용하는 것은 비추
+  - 프로미스로 받아온 데이터는 그대로 연결, @wire 데코레이터로 받아온 데이터는 객체 형식으로 들어오므로 변수명.data 와 같은 형식으로 연결
+  

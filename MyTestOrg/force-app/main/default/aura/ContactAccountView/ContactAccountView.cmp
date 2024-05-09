@@ -1,0 +1,27 @@
+<!--************************************************************************************
+ * Description : 실습) 수상경력에 학생정보를 불러오는 컴포넌트 예제
+ *
+ * Ver      Date           Author          Modification
+ * ===================================================================================
+   1.0      2022-09-07     yr.lee          Create
+*************************************************************************************-->
+<!-- implemets, controller 선언-->
+<!-- force:hasRecordId => 해당 페이지 레코드 아이디를 자동으로 끌고 옴 -->
+<aura:component description="ContactAccountView" controller="ContactAccountViewController" implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes">
+    <aura:attribute name="objAccount" type="Object" default=""/>
+    <aura:handler name="init" value="{!this}" action="{!c.fnInit}" />
+    <lightning:card variant="Narrow" title="Account Information" iconName="standard:account" footer="">
+        <p class="slds-p-horizontal_small">
+            Name : {!v.objAccount.Account.Name}
+        </p>
+        <p class="slds-p-horizontal_small">
+            Number : {!v.objAccount.Account.AccountNumber}
+        </p>
+        <p class="slds-p-horizontal_small">
+            Industry : {!v.objAccount.Account.Industry}
+        </p>
+        <p class="slds-p-horizontal_small">
+            Type : {!v.objAccount.Account.Type}
+        </p>
+    </lightning:card>
+</aura:component>
