@@ -24,6 +24,7 @@ public with sharing class AccountViewController {
                                     FROM Account
                                     WHERE 
                                       Name LIKE :searchString
+                                      // WHERE Name LIKE: '%' + accNm + '%'
                                   ]; 
    
     return searchResults;

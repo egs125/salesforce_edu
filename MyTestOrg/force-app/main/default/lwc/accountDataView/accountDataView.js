@@ -2,6 +2,7 @@ import { LightningElement, api, wire, track } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent'
 import getAcc from '@salesforce/apex/AccountViewController.getAcc';
 import searchAcc from '@salesforce/apex/AccountViewController.searchAcc';
+
 // 데이터 업데이트하는 함수
 import {updateRecord} from 'lightning/uiRecordApi';
 
@@ -57,7 +58,7 @@ export default class AccountDataView extends LightningElement {
     return this.searchResults.length === 0 ? this.wiredAccounts.data : this.searchResults;
   }
 
-  handleToastMessage({ message, variant}) {
+  handleToastMessage({ message, variant }) {
     const toast = new ShowToastEvent({
       title: 'Toast message',
       message,
@@ -118,3 +119,88 @@ export default class AccountDataView extends LightningElement {
       .catch(error => this.handleToastMessage({ message: '에러 발생', variant: 'error' }));
   }
 }
+
+
+
+/*
+fnSearch() {
+        console.dir('버튼 클릭');
+        searchAcc({ accNm: this.accNm })
+            .then(data => {
+                if(!data.length){
+                    this.searchResults  = null;
+                    this.fnSetToast('검색 결과가 없습니다','다시 검색해주세요', 'warning');
+                }else{
+                    this.searchResults  = data;
+                }
+            })
+            .catch(error => {
+                this.fnSetToast('에러발생', error.body.message, 'error');
+                this.searchResults  = null;
+            });
+    }
+
+    get tableData() {
+        if(this.searchResults){
+            return this.searchResults;
+        }else{
+            return this.wiredAccounts.data;
+        }
+    }
+
+    async handleSave(event) {
+        let draftValues = event.detail.draftValues;
+
+        console.dir(draftValues);
+
+         let updatePromises = draftValues.map(item => {
+          let fields = {};
+
+          Object.keys(item).forEach(key => {
+              fields[key] = item[key];
+          });
+
+          return updateRecord({ fields });
+      });
+
+      // 프로미스의 배열이 다 실행되었는지 여부에 따라서 분기처리
+      await Promise.all(updatePromises)
+          .then(data =>{
+
+              this.draftValues = [];
+
+              this.fnSetToast('수정완료', '데이터 수정 완료', 'info');
+
+              // @wire로 이은 데이터 refresh
+              refreshApex(this.wiredAccounts);
+
+              if(this.searchResults){
+                  let tempArray = [];
+                  data.forEach(function(item,idx){
+                      let tempObj = {};
+                      Object.keys(item.fields).forEach(key => {
+                          tempObj[key] = item.fields[key].value;
+                      });
+                      tempObj.Id = item.id;
+                      tempArray.push(tempObj);
+                  })
+
+                  this.searchResults = tempArray;
+              }
+
+          })
+          .catch(error => {
+              this.fnSetToast('에러발생', error.body.message, 'error');
+          })
+  }
+
+  fnSetToast(title, message, variant){
+      dispatchEvent(
+          new ShowToastEvent({
+              title: title,
+              message: message,
+              variant: variant
+          })
+      )
+  }
+*/
