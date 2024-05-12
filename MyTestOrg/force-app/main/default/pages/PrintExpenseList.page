@@ -1,0 +1,63 @@
+<!--************************************************************************************
+ * Description : Order Item 출력
+ *
+ * Ver      Date           Author          Modification
+ * ===================================================================================
+   1.0                     yr.lee          Create
+*************************************************************************************-->
+
+<!-- renderAs 설정 없으면 일반 HTML 화면으로 생성 -->
+<apex:page id="PrintExpenseList" controller="PrintExpenseListController" renderAs="pdf">
+    <html>
+    <head>
+        <style>
+            .page {
+                width : 850px;
+                height : 1130px;
+                font-family: 'Arial Unicode MS';
+            }
+            @page {
+                size: A4;
+                margin 0;
+            }
+            table, th, tr, td{
+                table-layout: fixed;
+                border-collapse: collapse;
+                border:black solid 1px;
+                font-size : 10pt;
+            }
+            .body{
+                font-family: 'Arial Unicode MS';
+            }
+            div.onepage {
+                page-break-before: always;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="page">
+        <div style="text-align:center;width:100%;font-size:28px;font-family:'Arial Unicode MS'">Order Product List</div>
+
+        <div style="margin-top:30px;padding-left:20%;font-family:'Arial Unicode MS'">
+            <table style="border:black solid 1px;border-collapse:collapse">
+                <tr>
+                    <td style="border:black solid 1px;">Order Item Number</td>
+                    <td style="border:black solid 1px;">Product Name</td>
+                    <td style="border:black solid 1px;">Quantity</td>
+                    <td style="border:black solid 1px;">Spending</td>
+                </tr>
+                <apex:repeat value="{!listExpense}" var="obj">
+                    <tr>
+                        <td style="border:black solid 1px;">{!obj.OrderItemNumber}</td>
+                        <td style="border:black solid 1px;">{!obj.Product2.Name}</td>
+                        <td style="border:black solid 1px;">{!obj.Quantity}</td>
+                        <td style="border:black solid 1px;">{!obj.Spending__c}</td>
+                    </tr>
+                </apex:repeat>
+            </table>
+        </div>
+    </div>
+    </body>
+    </html>
+
+</apex:page>
