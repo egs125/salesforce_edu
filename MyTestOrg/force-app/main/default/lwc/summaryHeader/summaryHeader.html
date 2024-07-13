@@ -1,0 +1,48 @@
+<template>
+  <div class="c-container">
+    <lightning-layout>
+      <lightning-layout-item padding="around-small">
+          <div class="header-column">
+              <!-- <p class="field-title" title="Field 1">Field 1</p> -->
+              <lightning-combobox
+                name="unitProcess"
+                label="Unit Process"
+                value={selectedUnitProcess}
+                placeholder="Unit Process"
+                options={unitProcesses}
+                onchange={onChangeUnitProcess}
+              >
+              </lightning-combobox>
+          </div>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+          <div class="header-column">
+              <lightning-combobox
+                name="taskFlow"
+                label="Task Flow"
+                value={selectedTaskFlow}
+                placeholder="Task Flow"
+                options={taskFlows}
+                onchange={onChageTaskFlow}
+              >
+              </lightning-combobox>
+          </div>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+          <div class="header-column">
+              <lightning-combobox
+                name="taskFlowStep"
+                label="Task Flow Step"
+                value={selectedTaskFlowStep}
+                placeholder="Task Flow Step"
+                options={taskFlowSteps}
+                onchange={onChageTaskFlowStep}
+              >
+              </lightning-combobox>
+          </div>
+        </lightning-layout-item>
+    </lightning-layout>
+  </div>
+</template>

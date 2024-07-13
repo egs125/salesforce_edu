@@ -1,0 +1,17 @@
+<template>
+  <lightning-carousel>
+    <template if:true={pages}>
+      <template for:each={pages} for:item="page" for:index="index">
+        <lightning-carousel-image
+          key={page.id}
+          src={page.src}
+          header={page.header}
+          description={page.desc}
+          alternative-text="This is a card"
+          href="https://www.example.com"
+        >
+        </lightning-carousel-image>
+      </template>
+    </template>
+  </lightning-carousel>
+</template>
